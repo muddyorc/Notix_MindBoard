@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteBtn.classList.add('delete-btn');
         deleteBtn.textContent = 'X';
         deleteBtn.addEventListener('click', () => {
-            notesBoard.removeChild(noteElement);
+            noteElement.remove();
         });
 
         noteElement.appendChild(deleteBtn);
