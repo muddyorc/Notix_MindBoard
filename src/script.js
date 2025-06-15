@@ -17,6 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const noteElement = document.createElement('div');
         noteElement.classList.add('note');
         noteElement.textContent = text;
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.textContent = 'X';
+        deleteBtn.addEventListener('click', () => {
+            noteElement.remove();
+        });
+
+        noteElement.appendChild(deleteBtn);
         notesBoard.appendChild(noteElement);
     }
 
