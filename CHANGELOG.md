@@ -7,6 +7,14 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Não lançado]
 
+## [0.3.0] - 2025-06-15
+
+### Adicionado
+- Funcionalidade de deletar notas:
+    - Adicionado um botão 'X' (`<button class="delete-btn">`) a cada nota criada (`script.js`).
+    - Implementada a lógica para que o clique no botão 'X' remova a nota correspondente do quadro (`script.js`).
+    - Estilizado o botão de deletar para posicionamento no canto da nota, com visual e efeitos de hover (`style.css`).
+
 ## [0.2.0] - 2025-06-15
 
 ### Adicionado

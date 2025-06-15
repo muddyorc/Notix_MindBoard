@@ -60,6 +60,7 @@ h1 {
 }
 
 .note {
+    position: relative; /* Necessário para o posicionamento absoluto do botão de deletar */
     background-color: #ffffe0; /* Amarelo claro */
     border: 1px solid #ccc;
     padding: 15px;
@@ -68,4 +69,31 @@ h1 {
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     border-radius: 4px;
     overflow-wrap: break-word; /* Quebra palavras longas para não estourar o container */
+}
+
+.note .delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff6b6b; /* Vermelho claro */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Botão circular */
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px; /* Centraliza o X verticalmente */
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.7; /* Levemente transparente por padrão */
+    transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.note:hover .delete-btn {
+    opacity: 1; /* Totalmente opaco no hover da nota */
+}
+
+.delete-btn:hover {
+    background-color: #ff4747; /* Vermelho mais escuro no hover do botão */
+    opacity: 1;
 }
