@@ -7,3 +7,65 @@ body {
 }
 
 /* Outros estilos virão aqui */
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.input-area {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#note-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    resize: vertical; /* Permite redimensionamento vertical */
+    min-height: 60px; /* Altura mínima */
+}
+
+#add-note-btn {
+    padding: 10px 15px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#add-note-btn:hover {
+    background-color: #4cae4c;
+}
+
+.notes-board {
+    display: flex;
+    flex-wrap: wrap; /* Permite que as notas quebrem para a próxima linha */
+    gap: 15px; /* Espaçamento entre as notas */
+    padding: 10px;
+    background-color: #e9e9e9;
+    border-radius: 4px;
+    min-height: 200px; /* Altura mínima para o quadro de notas */
+}
+
+.note {
+    background-color: #ffffe0; /* Amarelo claro */
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 200px; /* Largura fixa para as notas */
+    height: auto; /* Altura automática baseada no conteúdo */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    overflow-wrap: break-word; /* Quebra palavras longas para não estourar o container */
+}
