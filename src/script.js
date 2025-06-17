@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const noteText = noteInput.value.trim();
         if (noteText) {
             createNoteElement(noteText);
-            noteInput.value = ''; // Limpa o textarea
+            noteInput.value = '';
+            saveNotes();
         }
     });
 
@@ -23,11 +24,25 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteBtn.textContent = 'X';
         deleteBtn.addEventListener('click', () => {
             noteElement.remove();
+            saveNotes();
         });
 
         noteElement.appendChild(deleteBtn);
         notesBoard.appendChild(noteElement);
     }
+
+    function saveNotes() {
+        const notes = Array.from(notesBoard.getElementsByClassName('note'))
+            .map(note => note.childNodes[0].nodeValue || '');
+        localStorage.setItem('mindboard-notes', JSON.stringify(notes));
+    }
+
+    function loadNotes() {
+        const notes = JSON.parse(localStorage.getItem('mindboard-notes')) || [];
+        notes.forEach(text => createNoteElement(text));
+    }
+
+    loadNotes();
 
     console.log('MindBoard iniciado!');
 });
