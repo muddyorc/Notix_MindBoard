@@ -7,6 +7,15 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Não lançado]
 
+## [0.4.0] - 2025-06-17
+
+### Adicionado
+- Persistência de dados com localStorage:
+    - As notas criadas são salvas automaticamente no navegador.
+    - As notas permanecem no quadro mesmo após recarregar a página.
+    - Funções `saveNotes()` e `loadNotes()` implementadas em `script.js`.
+    - Notas são salvas ao adicionar ou remover e carregadas ao abrir a aplicação.
+
 ## [0.3.0] - 2025-06-15
 
 ### Adicionado
