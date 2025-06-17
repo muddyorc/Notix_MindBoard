@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function saveNotes() {
         const notes = Array.from(notesBoard.getElementsByClassName('note'))
-            .map(note => note.childNodes[0].nodeValue || '');
+            .map(note => note.textContent || '');
         localStorage.setItem('mindboard-notes', JSON.stringify(notes));
     }
 
