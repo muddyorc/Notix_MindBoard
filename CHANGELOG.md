@@ -7,6 +7,18 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Não lançado]
 
+## [0.5.0] - 2025-06-18
+
+### Adicionado
+- **Edição de Notas:** Implementada a funcionalidade de editar o conteúdo de uma nota com um duplo clique.
+- **Seleção de Cores:** Adicionado um seletor de cores para permitir que o usuário escolha a cor de fundo de novas notas.
+
+### Alterado
+- **Refatoração da UI/UX:** Interface completamente redesenhada para um visual mais moderno e amigável, com nova tipografia, paleta de cores e layout responsivo.
+- **Refatoração de Código:** O `script.js` foi reestruturado para uma arquitetura modular, melhorando a organização e a manutenibilidade.
+- **Renomeação do Projeto:** O nome do projeto foi alterado de "MindBoard" para "Notix" em todos os arquivos relevantes.
+- **Persistência de Dados:** A chave do `localStorage` foi atualizada para `notix-notes`, e agora salva o conteúdo e a cor da nota.
+
 ## [0.4.0] - 2025-06-17
 
 ### Adicionado

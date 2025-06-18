@@ -1,6 +1,6 @@
-# MindBoard
+# Notix
 
-Quadro de anotações com post-its virtuais. Permite adicionar, mover e excluir notas.
+Quadro de anotações com post-its virtuais. Permite adicionar, mover, editar, deletar e mudar a cor das notas.
 
 ## Funcionalidades
 
@@ -8,6 +8,7 @@ Quadro de anotações com post-its virtuais. Permite adicionar, mover e excluir 
 - Mover notas
 - Excluir notas
 - Editar notas
+- Mudar cor das notas
 
 ## Como Contribuir
 
