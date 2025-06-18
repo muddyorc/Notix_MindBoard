@@ -3,20 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindBoard</title>
+    <title>Notix - Seu Quadro de Ideias</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>MindBoard</h1>
-        <div class="input-area">
-            <textarea id="note-input" placeholder="Digite sua nota aqui..."></textarea>
-            <button id="add-note-btn">Adicionar Nota</button>
-        </div>
-        <div id="notes-board" class="notes-board">
-            <!-- Notas serão adicionadas aqui -->
-        </div>
-    </div>
+    <header>
+        <h1>Notix</h1>
+        <p>Seu quadro de ideias, simples e rápido.</p>
+    </header>
+
+    <main class="container">
+        <section id="create-note">
+            <textarea id="note-input" placeholder="Criar uma nova nota..."></textarea>
+            <div class="note-actions">
+                <div class="color-selector">
+                    <input type="color" id="color-picker" value="#ffffe0">
+                </div>
+                <button id="add-note-btn">Adicionar</button>
+            </div>
+        </section>
+
+        <section id="notes-board" class="notes-board">
+            <!-- As notas salvas aparecerão aqui -->
+        </section>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>
