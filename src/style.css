@@ -188,6 +188,106 @@ header p {
     background-color: var(--danger-hover-color);
 }
 
+/* Estilos para feedback de erro no textarea */
+#note-input.input-error {
+    border-color: var(--danger-color);
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+}
+
+/* Estilos para o toast de sucesso */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--primary-color);
+    color: var(--white-color);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px var(--shadow-color);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(30px);
+    transition: opacity 0.4s, transform 0.4s;
+    z-index: 9999;
+}
+.toast.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Classe para esconder visualmente o label, mas mantê-lo acessível para leitores de tela */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Estilos para o modal de confirmação de deleção */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+.modal {
+    background: var(--white-color);
+    padding: 2rem 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    text-align: center;
+    min-width: 260px;
+}
+.modal-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+.modal-confirm {
+    background: var(--danger-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.modal-confirm:hover {
+    background: var(--danger-hover-color);
+}
+.modal-cancel {
+    background: var(--light-gray-color);
+    color: var(--font-color);
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.modal-cancel:hover {
+    background: #e0e0e0;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .container {
