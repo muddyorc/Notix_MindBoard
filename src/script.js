@@ -70,9 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
             noteContent.classList.add('note-content');
             noteContent.textContent = note.content;
             noteContent.style.color = getContrastYIQ(note.color);
-            noteContent.classList.add('note-content');
-            noteContent.textContent = note.content;
-            noteContent.style.color = getContrastYIQ(note.color);
 
             noteContent.addEventListener('dblclick', () => {
                 noteContent.contentEditable = true;
