@@ -66,20 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
             noteElement.dataset.id = note.id;
             noteElement.style.backgroundColor = note.color;
 
-            // Função para determinar cor do texto
-            function getContrastYIQ(hexcolor) {
-                hexcolor = hexcolor.replace('#', '');
-                if (hexcolor.length === 3) {
-                    hexcolor = hexcolor.split('').map(c => c + c).join('');
-                }
-                const r = parseInt(hexcolor.substr(0,2),16);
-                const g = parseInt(hexcolor.substr(2,2),16);
-                const b = parseInt(hexcolor.substr(4,2),16);
-                const yiq = ((r*299)+(g*587)+(b*114))/1000;
-                return (yiq >= 128) ? '#222' : '#fff';
-            }
-
             const noteContent = document.createElement('div');
+            noteContent.classList.add('note-content');
+            noteContent.textContent = note.content;
+            noteContent.style.color = getContrastYIQ(note.color);
             noteContent.classList.add('note-content');
             noteContent.textContent = note.content;
             noteContent.style.color = getContrastYIQ(note.color);
@@ -160,6 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast(message) {
             let toast = document.createElement('div');
             toast.className = 'toast';
+            toast.setAttribute('role', 'status');
+            toast.setAttribute('aria-live', 'polite');
             toast.textContent = message;
             document.body.appendChild(toast);
             setTimeout(() => {
@@ -179,9 +171,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const modal = document.createElement('div');
             modal.id = 'delete-modal';
             modal.className = 'modal-overlay';
+            modal.setAttribute('role', 'dialog');
+            modal.setAttribute('aria-modal', 'true');
+            modal.setAttribute('aria-labelledby', 'delete-modal-label');
             modal.innerHTML = `
                 <div class="modal">
-                    <p>Deseja realmente excluir esta nota?</p>
+                    <p id="delete-modal-label">Deseja realmente excluir esta nota?</p>
                     <div class="modal-actions">
                         <button class="modal-confirm">Confirmar</button>
                         <button class="modal-cancel">Cancelar</button>
