@@ -17,10 +17,11 @@
 
     <main class="container">
         <section id="create-note">
-            <textarea id="note-input" placeholder="Criar uma nova nota..."></textarea>
+            <label for="note-input" class="visually-hidden">Digite o texto da nota</label>
+            <textarea id="note-input" placeholder="Criar uma nova nota..." aria-label="Digite o texto da nota"></textarea>
             <div class="note-actions">
                 <div class="color-selector">
-                    <input type="color" id="color-picker" value="#ffffe0">
+                    <input type="color" id="color-picker" value="#ffffe0" aria-label="Mudar cor da nota">
                 </div>
                 <button id="add-note-btn">Adicionar</button>
             </div>

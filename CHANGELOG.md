@@ -5,7 +5,21 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Não lançado]
+## [1.0.0] - 2025-06-18
+
+### Adicionado
+- Atalho de teclado Ctrl+Enter para adicionar nota.
+- Modal customizado de confirmação antes de deletar nota.
+- Feedback visual para nota vazia (shake e borda vermelha).
+- Toast de sucesso ao criar nota e toast de erro para problemas no localStorage.
+- Contraste automático do texto das notas para garantir legibilidade.
+- Label oculto para acessibilidade no textarea e aria-labels nos botões.
+- localStorage protegido com try...catch.
+- Garantia de que apenas o texto da nota é salvo, sem o botão de deletar.
+- Interface responsiva e acessível.
+
+### Corrigido
+- Pequenos ajustes de robustez e acessibilidade.
 
 ## [0.5.0] - 2025-06-18
 

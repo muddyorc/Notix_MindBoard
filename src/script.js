@@ -27,6 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 app.elements.addNoteBtn.addEventListener('click', () => {
                     app.addNote();
                 });
+                // Atalho de teclado Ctrl+Enter para adicionar nota
+                app.elements.noteInput.addEventListener('keydown', (e) => {
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                        e.preventDefault();
+                        app.addNote();
+                    }
+                });
             }
         },
 
@@ -43,6 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.renderNotes();
                 this.saveNotes();
                 this.elements.noteInput.value = '';
+                this.showToast('Nota criada com sucesso!');
+            } else {
+                // Feedback visual para nota vazia
+                this.elements.noteInput.classList.add('input-error');
+                setTimeout(() => {
+                    this.elements.noteInput.classList.remove('input-error');
+                }, 600);
             }
         },
 
@@ -52,9 +66,23 @@ document.addEventListener('DOMContentLoaded', () => {
             noteElement.dataset.id = note.id;
             noteElement.style.backgroundColor = note.color;
 
+            // Função para determinar cor do texto
+            function getContrastYIQ(hexcolor) {
+                hexcolor = hexcolor.replace('#', '');
+                if (hexcolor.length === 3) {
+                    hexcolor = hexcolor.split('').map(c => c + c).join('');
+                }
+                const r = parseInt(hexcolor.substr(0,2),16);
+                const g = parseInt(hexcolor.substr(2,2),16);
+                const b = parseInt(hexcolor.substr(4,2),16);
+                const yiq = ((r*299)+(g*587)+(b*114))/1000;
+                return (yiq >= 128) ? '#222' : '#fff';
+            }
+
             const noteContent = document.createElement('div');
             noteContent.classList.add('note-content');
             noteContent.textContent = note.content;
+            noteContent.style.color = getContrastYIQ(note.color);
 
             noteContent.addEventListener('dblclick', () => {
                 noteContent.contentEditable = true;
@@ -71,9 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('delete-btn');
-            deleteBtn.innerHTML = '&times;'; // Use &times; for a better 'X' symbol
+            deleteBtn.innerHTML = '&times;';
+            deleteBtn.setAttribute('aria-label', 'Excluir nota');
             deleteBtn.addEventListener('click', () => {
-                this.deleteNote(note.id);
+                app.showDeleteModal(note.id);
             });
 
             noteElement.appendChild(noteContent);
@@ -109,15 +138,65 @@ document.addEventListener('DOMContentLoaded', () => {
         },
 
         saveNotes() {
-            localStorage.setItem('notix-notes', JSON.stringify(this.notes));
+            try {
+                localStorage.setItem('notix-notes', JSON.stringify(this.notes));
+            } catch (e) {
+                this.showToast('Atenção: Não foi possível salvar as notas (localStorage indisponível).');
+            }
         },
 
         loadNotes() {
-            const notes = localStorage.getItem('notix-notes');
-            if (notes) {
-                this.notes = JSON.parse(notes);
-                this.renderNotes();
+            try {
+                const notes = localStorage.getItem('notix-notes');
+                if (notes) {
+                    this.notes = JSON.parse(notes);
+                    this.renderNotes();
+                }
+            } catch (e) {
+                this.showToast('Atenção: Não foi possível carregar as notas (localStorage indisponível).');
             }
+        },
+
+        showToast(message) {
+            let toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 10);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 2500);
+        },
+
+        showDeleteModal(noteId) {
+            // Remove modal anterior se existir
+            const oldModal = document.getElementById('delete-modal');
+            if (oldModal) oldModal.remove();
+
+            const modal = document.createElement('div');
+            modal.id = 'delete-modal';
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal">
+                    <p>Deseja realmente excluir esta nota?</p>
+                    <div class="modal-actions">
+                        <button class="modal-confirm">Confirmar</button>
+                        <button class="modal-cancel">Cancelar</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            document.querySelector('.modal-confirm').focus();
+            document.querySelector('.modal-confirm').onclick = () => {
+                this.deleteNote(noteId);
+                modal.remove();
+            };
+            document.querySelector('.modal-cancel').onclick = () => {
+                modal.remove();
+            };
         }
     };
 
